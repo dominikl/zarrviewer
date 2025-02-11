@@ -1,0 +1,75 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'dlindner'
+version = '0.0.1-SNAPSHOT'
+
+mainClassName = 'zarrviewer.Main'
+sourceCompatibility = 11
+targetCompatibility = 11
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+    }
+    test {
+        java {
+            srcDirs = ['test']
+        }
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url 'https://artifacts.glencoesoftware.com/artifactory/ome.releases'
+    }
+    maven {
+        url 'https://artifacts.glencoesoftware.com/artifactory/ome.external'
+    }
+    maven {
+        url 'https://artifacts.glencoesoftware.com/artifactory/scijava-thirdparty'
+    }
+    maven {
+        url 'https://artifacts.glencoesoftware.com/artifactory/jzarr-releases'
+    }
+    maven {
+        url 'https://repo.glencoesoftware.com/repository/bioformats2raw2ometiff/'
+    }
+    maven {
+        name 'Unidata'
+        url 'https://artifacts.glencoesoftware.com/artifactory/unidata-releases'
+    }
+}
+
+dependencies {
+    implementation 'net.java.dev.jna:jna:5.10.0'
+    implementation 'ome:formats-gpl:7.3.1'
+    implementation 'info.picocli:picocli:4.7.5'
+    implementation 'com.univocity:univocity-parsers:2.8.4'
+
+    implementation 'dev.zarr:jzarr:0.4.2'
+    implementation 'dev.zarr:zarr-java:0.0.5-SNAPSHOT'
+    implementation 'org.lasersonlab:s3fs:2.2.3'
+
+    implementation 'javax.xml.bind:jaxb-api:2.3.0'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.3.14'
+    implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.3.14'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.15.2'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+application {
+    mainClass = 'zarrviewer.Main'
+}
