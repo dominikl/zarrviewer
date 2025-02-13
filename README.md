@@ -27,5 +27,6 @@ Then you can build/run zarrviewer:
 
 ```
 git clone https://github.com/dlindner/zarrviewer.git
+cd zarrviewer
 gradle run
 ```
